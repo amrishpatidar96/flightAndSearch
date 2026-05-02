@@ -7,6 +7,7 @@
 - Create a `.env` file in the root directory and add the following environment variable
   - `PORT=3000`
 - Inside the `src/config` folder create a new file `config.json` and then add the following piece of json
+
 ```
 {
    "development": {
@@ -18,10 +19,14 @@
   }
 }
 ```
-once you have added your db config as listed above , goto the src folder from your terminal and execute `npx sequelize db:crate`
 
+once you have added your db config as listed above , goto the src folder from your terminal and execute `npx sequelize db:crate`
+and then execute
+
+`npx sequelize db:migrate`
 
 ## DB Design
+
 - Airplane Table
 - Flight
 - Airport
@@ -34,6 +39,7 @@ once you have added your db config as listed above , goto the src folder from yo
 ## 📊 Database Design
 
 ### 🛫 Airplane
+
 - id
 - model_number
 - capacity
@@ -41,6 +47,7 @@ once you have added your db config as listed above , goto the src folder from yo
 ---
 
 ### ✈️ Flights
+
 - id
 - departure_city_id
 - destination_city_id
@@ -53,6 +60,7 @@ once you have added your db config as listed above , goto the src folder from yo
 ---
 
 ### 🏢 Airport
+
 - id
 - name
 - city_id
@@ -61,6 +69,7 @@ once you have added your db config as listed above , goto the src folder from yo
 ---
 
 ### 🌆 City
+
 - id
 - name
 
