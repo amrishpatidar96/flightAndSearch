@@ -26,12 +26,15 @@ class CityRepository{
     }
     async updateCity(cityId, data){
         try {
-            const response  = await City.update(data,{
-                where:{
-                    id: cityId
-                }
-            })
-            return response;
+            //const response  = await City.update(data,{
+            //    where:{
+            //        id: cityId
+            //    }
+            //})
+            const city  = await this.getCity(cityId);
+            city.name = data.name;
+            await city.save();
+            return city;
         } catch (error) {
             console.log("Something went wrong in the repository layer");
             throw error;
@@ -48,3 +51,4 @@ class CityRepository{
         }
     }
 }
+module.exports = CityRepository;
