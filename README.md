@@ -80,3 +80,7 @@ and then execute
 - One **Airplane** → Many **Flights** (1:N)
 - One **City** → Many **Airports** (1:N)
 - One **Airport** → Many **Flights** (1:N)
+
+
+
+npx sequilize model:generate --name Airport --attributes name:String,address:String,cityId:Integer

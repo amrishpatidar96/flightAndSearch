@@ -1,14 +1,14 @@
-const { CityService } = require('../services/index');
+const { AirportService } = require('../services/index');
 
-const cityService = new CityService();
+const airportService = new AirportService();
 //POST /city
 const create = async (req, res) => {
     try {
-        const city = await cityService.createCity(req.body);
+        const airport = await airportService.createAirport(req.body);
         return res.status(201).json({
-            data: city,
+            data: airport,
             success: true,
-            message: "Successfully created a city",
+            message: "Successfully created a airport",
             err: {}
         });
     } catch (error) {
@@ -16,7 +16,7 @@ const create = async (req, res) => {
         return res.status(500).json({
             data: {},
             success: false,
-            message: "Failed to create city",
+            message: "Failed to create airport",
             err: error
         });
     }
@@ -24,11 +24,11 @@ const create = async (req, res) => {
 }
 const creates = async (req, res) => {
     try {
-        const cities = await cityService.createCities(req.body);
+        const airports = await airportService.createAirports(req.body);
         return res.status(201).json({
-            data: cities,
+            data: airports,
             success: true,
-            message: "Successfully created a cities",
+            message: "Successfully created a airports",
             err: {}
         });
     } catch (error) {
@@ -36,7 +36,7 @@ const creates = async (req, res) => {
         return res.status(500).json({
             data: {},
             success: false,
-            message: "Failed to create cities",
+            message: "Failed to create airports",
             err: error
         });
     }
@@ -44,11 +44,11 @@ const creates = async (req, res) => {
 //DELETE /city/:id
 const destroy = async (req, res) => {
     try {
-        const response = await cityService.deleteCity(req.params.id);
+        const response = await airportService.deleteAirport(req.params.id);
         return res.status(200).json({
             data: response,
             success: true,
-            message: "Successfully deleted the city",
+            message: "Successfully deleted the airport",
             err: {}
         });
     } catch (error) {
@@ -56,7 +56,7 @@ const destroy = async (req, res) => {
         return res.status(500).json({
             data: {},
             success: false,
-            message: "Failed to delete city",
+            message: "Failed to delete airport",
             err: error
         });
     }
@@ -64,12 +64,12 @@ const destroy = async (req, res) => {
 //patch /city/:id
 const update = async (req, res) => {
     try {
-        const response = await cityService.updateCity(req.params.id, req.body);
+        const response = await airportService.updateAirport(req.params.id, req.body);
         console.log("Response from service layer in controller", response);
         return res.status(200).json({
             data: response,
             success: true,
-            message: "Successfully updated the city",
+            message: "Successfully updated the airport",
             err: {}
         });
     } catch (error) {
@@ -77,7 +77,7 @@ const update = async (req, res) => {
         return res.status(500).json({
             data: {},
             success: false,
-            message: "Failed to fetch city",
+            message: "Failed to update airport",
             err: error
         });
 
@@ -87,11 +87,11 @@ const update = async (req, res) => {
 // GET /city/:id
 const get = async (req, res) => {
     try {
-        const response = await cityService.getCity(req.params.id);
+        const response = await airportService.getAirport(req.params.id);
         return res.status(200).json({
             data: response,
             success: true,
-            message: "Successfully fetched the city",
+            message: "Successfully fetched the airport",
             err: {}
         });
     } catch (error) {
@@ -108,27 +108,7 @@ const get = async (req, res) => {
 
 const getAll = async (req, res) => {
     try {
-        const response = await cityService.getAllCities(req.query);
-        return res.status(200).json({
-            data: response,
-            success: true,
-            message: "Successfully fetched all the cities",
-            err: {}
-        });
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json({
-            data: {},
-            success: false,
-            message: "Failed to fetch cities",
-            err: error
-        });
-    }
-
-}
-const getAllAirports = async (req, res) => {
-    try {
-        const response = await cityService.getAllAirports(req.params.cityId);
+        const response = await airportService.getAllAirports(req.query);
         return res.status(200).json({
             data: response,
             success: true,
@@ -140,13 +120,12 @@ const getAllAirports = async (req, res) => {
         return res.status(500).json({
             data: {},
             success: false,
-            message: "Failed to fetch cities",
+            message: "Failed to fetch airports",
             err: error
         });
     }
 
 }
-
 
 module.exports = {
     create,
@@ -154,6 +133,5 @@ module.exports = {
     destroy,
     update,
     get,
-    getAll,
-    getAllAirports
+    getAll
 }

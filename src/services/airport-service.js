@@ -1,15 +1,15 @@
-const { CityRepository } = require('../repository/index')
+const { AirportRepository } = require('../repository/index')
 
-class CityService {
+class AirportService {
 
     constructor() {
-        this.cityRepository = new CityRepository();
+        this.airportRepository = new AirportRepository();
     }
 
-    async createCity(data) {
+    async createAirport(data) {
         try {
-            const city = await this.cityRepository.createCity(data);
-            return city;
+            const airport = await this.airportRepository.createAirport(data);
+            return airport;
         }
         catch (error) {
             console.log("Something went wrong in the service layer");
@@ -17,20 +17,20 @@ class CityService {
         }
 
     }
-    async createCities(data) {
+    async createAirports(data) {
         try {
-            const cities = await this.cityRepository.bulkCreateCities(data);
-            return cities;
+            const airports = await this.airportRepository.bulkCreateAirports(data);
+            return airports;
         } catch (error) {
             console.log("Something went wrong in the service layer");
             throw error;
         }
     }
 
-    async deleteCity(cityId) {
+    async deleteAirport(airportId) {
 
         try {
-            const response = await this.cityRepository.deleteCity(cityId);
+            const response = await this.airportRepository.deleteAirport(airportId);
             return response;
         } catch (error) {
             console.log("Something went wrong in the service layer");
@@ -38,19 +38,19 @@ class CityService {
         }
     }
 
-    async updateCity(cityId, data) {
+    async updateAirport(airportId, data) {
 
         try {
-            const response = await this.cityRepository.updateCity(cityId, data);
+            const response = await this.airportRepository.updateAirport(airportId, data);
             return response;
         } catch (error) {
             console.log("Something went wrong in the service layer");
             throw error;
         }
     }
-    async getCity(cityId) {
+    async getAirport(airportId) {
         try {
-            const response = await this.cityRepository.getCity(cityId);
+            const response = await this.airportRepository.getAirport(airportId);
             return response;
         } catch (error) {
             console.log("Something went wrong in the service layer");
@@ -58,22 +58,25 @@ class CityService {
         }
 
     }
-    async getAllCities({ name }) {
+    async getAllAirports({ name }) {
         try {
             if (name) {
-                const cities = await this.cityRepository.getAllCities(name);
-                return cities;
+                const airports = await this.airportRepository.getAllAirports(name);
+                return airports;
             }
-            const response = await this.cityRepository.getAllCities();
+            const response = await this.airportRepository.getAllAirports();
             return response;
         } catch (error) {
             console.log("Something went wrong in the service layer");
             throw error;
         }
     }
-    async getAllAirports(cityId) {
+
+
+    async deleteAllAirportsOfACity(cityId) {
+
         try {
-            const response = await this.cityRepository.getAllAirports(cityId);
+            const response = await this.airportRepository.deleteAllAirportOfACity(cityId);
             return response;
         } catch (error) {
             console.log("Something went wrong in the service layer");
@@ -81,4 +84,4 @@ class CityService {
         }
     }
 }
-module.exports = CityService;
+module.exports = AirportService;
